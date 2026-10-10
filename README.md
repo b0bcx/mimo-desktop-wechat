@@ -195,20 +195,6 @@ node dist/cli/index.js status
 
 ---
 
-## 路线图
-
-- [x] 扫码登录、长轮询、文字双向
-- [x] 会话指令 `/mimowechat` `/list` `/switch` `/cancel` + 回复数字切换
-- [x] 大白话意图：列表 / 切换 / 模型
-- [x] 桌面内置模型链路（桌面端本地控制 API，免引擎密码）
-- [x] 主动推送 + 离线排队补发
-- [x] `send_to_wechat` 插件工具
-- [ ] 图片 / 文件 / 语音双向（媒体 CDN 解密，阶段 2）
-- [ ] 手机上数字回答权限确认
-- [ ] 设置页（MiMo TUI slot）
-
----
-
 ## License
 
 MIT，详见 [LICENSE](LICENSE)（含第三方衍生声明）。
