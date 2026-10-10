@@ -12,7 +12,7 @@
  * 2. **The advertised ciphertext size is the padded size**, not the plaintext size.
  *    The upload request has to declare both.
  *
- * @module @dsh-wechat/core/crypto
+ * @module mimo-desktop-wechat/core/crypto
  */
 
 import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto'

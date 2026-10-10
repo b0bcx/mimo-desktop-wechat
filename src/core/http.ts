@@ -11,7 +11,7 @@
  *    round 19-digit message ids. {@link parseWireJson} quotes those fields before
  *    parsing, copying Tencent's own scanner.
  *
- * @module @dsh-wechat/core/http
+ * @module mimo-desktop-wechat/core/http
  */
 
 import { randomBytes, randomUUID } from 'node:crypto'
@@ -214,7 +214,7 @@ export function buildHeaders(params: { token?: string }): Record<string, string>
 }
 
 /** Unique id for one outbound message, echoed back by the server for correlation. */
-export function newClientId(prefix = 'dsh-wechat'): string {
+export function newClientId(prefix = 'mimo-wechat'): string {
   return `${prefix}-${randomUUID()}`
 }
 

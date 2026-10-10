@@ -15,7 +15,7 @@
  * Writes are atomic (temp file plus rename) so a crash cannot leave a half-written
  * credential file that locks the user out of their own bot.
  *
- * @module @dsh-wechat/core/state
+ * @module mimo-desktop-wechat/core/state
  */
 
 import { randomUUID } from 'node:crypto'
@@ -112,10 +112,10 @@ export interface ChannelSettings {
    * on a phone means every command stalls on a conversation. The user chose the phone precisely to
    * stop sitting at the desktop, so a prompt they must come back to is a prompt they will not answer.
    *
-   * `default` leaves whatever the DSH profile is configured with, for people who want the same
+   * `default` leaves whatever the host profile is configured with, for people who want the same
    * guardrails on WeChat as at the console.
    *
-   * The preset can only be applied before a session's first turn — DSH locks it after that — so this
+   * The preset can only be applied before a session's first turn — the host locks it after that — so this
    * is set when the channel creates or adopts a session and cannot retroactively change one that has
    * already run.
    */
@@ -123,7 +123,7 @@ export interface ChannelSettings {
   /**
    * Whether a session that is not the bound one may push to the WeChat conversation.
    *
-   * **On by default**, and that default is the point of the feature: the reason to run DSH from a
+   * **On by default**, and that default is the point of the feature: the reason to run the bridge from a
    * phone is to leave the desk, and a task that finishes while the user is away is worthless if its
    * result cannot reach them. Whoever is doing the work can then say so.
    *
@@ -352,9 +352,9 @@ export class StateStore {
     this.file = file
   }
 
-  /** Resolve the default state path under a DSH home directory. */
-  static under(dshHome: string): StateStore {
-    return new StateStore(join(dshHome, 'wechat', 'state.json'))
+  /** Resolve the default state path under a home directory. */
+  static under(home: string): StateStore {
+    return new StateStore(join(home, 'wechat', 'state.json'))
   }
 
   /** Read the current state, tolerating a missing or corrupt file. */

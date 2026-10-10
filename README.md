@@ -2,7 +2,7 @@
 
 **手机微信遥控本机 MiMo Desktop / MiMoCode** —— 锁屏出门也能用，还会主动联系你。
 
-对标视频里的 [dsh-wechat](https://github.com/xcisxc29/dsh-wechat)，把同一套「微信当遥控器」体验接到 **MiMo Desktop / MiMoCode** 上：
+把「微信当遥控器」的体验接到 **MiMo Desktop / MiMoCode** 上：
 
 ```text
 手机微信 ──► 腾讯 iLink 服务 ──► 你这台电脑
@@ -166,26 +166,14 @@ agent 就会调用 `send_to_wechat`。
 
 ---
 
-## 与 dsh-wechat 的关系
-
-| | dsh-wechat | mimo-desktop-wechat |
-|---|---|---|
-| 宿主 | DeepSeek Harness 桌面端 | MiMo Desktop / MiMoCode |
-| 协议 | 腾讯 iLink（ClawBot） | 同左 |
-| 接入方式 | DSH 插件 bundle | `mimo` CLI 桥 + `@mimo-ai/plugin` |
-| 主动推送 | `send_to_wechat` + session 事件 | `send_to_wechat` + `session.post` + `notify` |
-| 会话指令 | `/mimowechat` `/list` `/switch`… | 同左 |
-
-协议层 `src/core/` 衍生自 MIT 的 [`@dsh-wechat/core`](https://github.com/xcisxc29/dsh-wechat)，并按腾讯官方 iLink 行为校对。协议细节见 [`docs/PROTOCOL.md`](docs/PROTOCOL.md)。
-
----
-
 ## 开发
 
 ```bash
 npm run typecheck
 npm run build
 ```
+
+协议细节见 [`docs/PROTOCOL.md`](docs/PROTOCOL.md)。
 
 ### 目录
 
@@ -215,7 +203,7 @@ node dist/cli/index.js status
 - [x] 桌面内置模型链路（桌面端本地控制 API，免引擎密码）
 - [x] 主动推送 + 离线排队补发
 - [x] `send_to_wechat` 插件工具
-- [ ] 图片 / 文件 / 语音双向（媒体 CDN 解密，参考 dsh-wechat core 的 `media.ts`）
+- [ ] 图片 / 文件 / 语音双向（媒体 CDN 解密，阶段 2）
 - [ ] 手机上数字回答权限确认
 - [ ] 设置页（MiMo TUI slot）
 
@@ -223,4 +211,4 @@ node dist/cli/index.js status
 
 ## License
 
-MIT。`src/core/` 部分衍生自 `@dsh-wechat/core`（MIT, xcisxc29）与腾讯 iLink 参考实现。
+MIT，详见 [LICENSE](LICENSE)（含第三方衍生声明）。

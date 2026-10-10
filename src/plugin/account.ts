@@ -1,9 +1,9 @@
 /**
  * Persisted WeChat bot credentials for this machine.
  *
- * Mirrors `@dsh-wechat/core`'s `WeixinAccount` shape so a token obtained by the
- * CLI can be reused by the plugin and vice versa. File mode is 0600 — it holds
- * a bearer token that grants full bot access.
+ * One bot account: id, token, the Weixin user it is bound to, and the API base.
+ * Written by the CLI `login`, readable by the plugin — the same file serves both.
+ * File mode is 0600 — it holds a bearer token that grants full bot access.
  *
  * @module mimo-desktop-wechat/account
  */

@@ -11,7 +11,7 @@
  *   hammering an endpoint that cannot succeed;
  * - other failures retry, then back off.
  *
- * @module @dsh-wechat/core/channel
+ * @module mimo-desktop-wechat/core/channel
  */
 
 import {

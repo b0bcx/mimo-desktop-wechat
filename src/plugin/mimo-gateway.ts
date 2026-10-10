@@ -146,7 +146,7 @@ async function exists(path: string): Promise<boolean> {
   }
 }
 
-/** Where WeChat-bound sessions live. Mirrors dsh-wechat's `$DSH_HOME/dsh_wechat` convention. */
+/** Where WeChat-bound sessions live: `~/.mimo-desktop-wechat/workspace`. */
 export function mimoWechatWorkspace(): string {
   const home = process.env.MIMO_WECHAT_HOME || join(homedir(), '.mimo-desktop-wechat')
   return join(home, 'workspace')

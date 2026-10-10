@@ -8,7 +8,7 @@
  * back at login (`baseurl`, `redirect_host`, `longpolling_timeout_ms`) are never
  * hardcoded except as fallbacks.
  *
- * @module @dsh-wechat/core/constants
+ * @module mimo-desktop-wechat/core/constants
  */
 
 /** Fixed entry point for QR-code requests. Login may redirect elsewhere afterwards. */
@@ -31,7 +31,7 @@ export const CHANNEL_VERSION = '2.4.9'
  * Self-declared bot identity reported in `base_info.bot_agent`.
  * Documented by Tencent as observability-only: it does not authenticate or route.
  */
-export const DEFAULT_BOT_AGENT = 'dsh-wechat/0.0.0'
+export const DEFAULT_BOT_AGENT = 'mimo-desktop-wechat/0.1.0'
 
 /**
  * `bot_type` for the WeChat channel build.

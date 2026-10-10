@@ -9,7 +9,7 @@
  * profile. It is loaded lazily and treated as optional: without it the caller falls back
  * to sending the original object alone, which is worse but still a delivered file.
  *
- * @module @dsh-wechat/core/thumbnail
+ * @module mimo-desktop-wechat/core/thumbnail
  */
 
 import { existsSync } from 'node:fs'
@@ -44,7 +44,7 @@ type SharpFactory = (input: Buffer) => SharpPipeline
 let cached: SharpFactory | null | undefined
 
 /** Whether optional codecs are disabled for this process. See {@link codecsDisabled}. */
-const DISABLE_ENV = 'DSH_WECHAT_NO_CODECS'
+const DISABLE_ENV = 'MIMO_WECHAT_NO_CODECS'
 
 /**
  * Whether the optional codecs are switched off by configuration.
@@ -56,7 +56,7 @@ const DISABLE_ENV = 'DSH_WECHAT_NO_CODECS'
  * only be reasoned about, never executed, and a regression that made a missing codec throw would
  * pass every test and break for every new user.
  *
- * Set `DSH_WECHAT_NO_CODECS=1` to force both codecs unavailable. It is also the quick way to confirm
+ * Set `MIMO_WECHAT_NO_CODECS=1` to force both codecs unavailable. It is also the quick way to confirm
  * which behaviour a stripped deployment will get.
  *
  * @returns True when the codecs must report themselves unavailable.
@@ -123,7 +123,7 @@ function resolveSharp(): SharpFactory {
     if (parent === dir) break
     dir = parent
   }
-  const home = process.env.DSH_HOME ?? join(homedir(), '.dsh')
+  const home = process.env.MIMO_WECHAT_HOME ?? join(homedir(), '.mimo-desktop-wechat')
   roots.push(join(home, 'profiles', 'desktop', 'node_modules'))
   roots.push(join(home, 'node_modules'))
 

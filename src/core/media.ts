@@ -12,7 +12,7 @@
  * that must agree with the actual bytes — plaintext size, plaintext MD5, and the
  * *padded ciphertext* size — because the service validates them.
  *
- * @module @dsh-wechat/core/media
+ * @module mimo-desktop-wechat/core/media
  */
 
 import { createHash, randomBytes, randomUUID } from 'node:crypto'
@@ -359,7 +359,7 @@ export async function sendItem(params: {
   runId?: string
   signal?: AbortSignal
 }): Promise<{ clientId: string; serverMessageId?: string }> {
-  const clientId = `dsh-wechat-${randomUUID()}`
+  const clientId = `mimo-wechat-${randomUUID()}`
   const response = await apiCall<SendMessageResp>({
     baseUrl: params.account.baseUrl,
     endpoint: 'ilink/bot/sendmessage',

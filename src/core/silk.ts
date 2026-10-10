@@ -8,7 +8,7 @@
  *
  * @see `@tencent-weixin/openclaw-weixin` `src/media/silk-transcode.ts`, which this mirrors.
  *
- * @module @dsh-wechat/core/silk
+ * @module mimo-desktop-wechat/core/silk
  */
 
 import { existsSync } from 'node:fs'
@@ -49,7 +49,7 @@ function resolveSilk(): SilkModule {
     if (parent === dir) break
     dir = parent
   }
-  const home = process.env.DSH_HOME ?? join(homedir(), '.dsh')
+  const home = process.env.MIMO_WECHAT_HOME ?? join(homedir(), '.mimo-desktop-wechat')
   roots.push(join(home, 'profiles', 'desktop', 'node_modules'))
   roots.push(join(home, 'node_modules'))
 

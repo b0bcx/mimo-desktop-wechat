@@ -8,7 +8,7 @@
  * apply while another package type-checks. Declaring the two calls we use here
  * means every consumer sees a typed function instead of implicitly `any`.
  *
- * @module @dsh-wechat/core/render
+ * @module mimo-desktop-wechat/core/render
  */
 
 // `qrcode` ships no types of its own; the surface we use is asserted below and every

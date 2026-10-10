@@ -4,7 +4,7 @@
  * The API speaks JSON over HTTP. Fields the protocol defines as `uint64` (message
  * identifiers) are parsed as strings on purpose — see {@link parseWireJson}.
  *
- * @module @dsh-wechat/core/types
+ * @module mimo-desktop-wechat/core/types
  */
 
 /** Common metadata attached to every request. */

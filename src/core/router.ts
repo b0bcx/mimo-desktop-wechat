@@ -1,5 +1,5 @@
 /**
- * Conversation routing: one WeChat conversation maps to one DSH session, and the
+ * Conversation routing: one WeChat conversation maps to one host session, and the
  * user switches between them with in-chat commands.
  *
  * Why commands rather than a picker: WeChat gives a channel exactly one chat
@@ -8,22 +8,22 @@
  * and the protocol's tool-call item types could eventually render something
  * richer. Commands work today, on every client, with no extra payload.
  *
- * Session ids are minted by this router in DSH's own format (`session-<uuid>`) and
+ * Session ids are minted by this router in the host's own format (`session-<uuid>`) and
  * handed to the session controller, which adopts an existing session with that id
  * or creates one. The mapping is what survives a restart, so a chat keeps talking
  * to the same session across reboots.
  *
- * @module @dsh-wechat/core/router
+ * @module mimo-desktop-wechat/core/router
  */
 
 import { randomUUID } from 'node:crypto'
 
-/** One conversation's binding to a DSH session. */
+/** One conversation's binding to a host session. */
 export interface SessionBinding {
   conversationId: string
   accountId: string
   peerId: string
-  /** DSH session id, in the platform's own `session-<uuid>` form. */
+  /** Host session id, in the platform's own `session-<uuid>` form. */
   sessionId: string
   /** Human label shown in `/list`, captured when the session was bound. */
   title: string
@@ -67,7 +67,7 @@ export type RouteResult =
 /**
  * The session surface this router needs from the host.
  *
- * Keeping it narrow means the routing rules are unit-testable without booting DSH,
+ * Keeping it narrow means the routing rules are unit-testable without booting the host,
  * and it documents exactly which host calls the channel depends on.
  */
 export interface SessionGateway {
@@ -103,7 +103,7 @@ export interface SessionRouterOptions {
 }
 
 /**
- * Routes WeChat messages to DSH sessions and implements the in-chat commands.
+ * Routes WeChat messages to host sessions and implements the in-chat commands.
  */
 export class SessionRouter {
   readonly #gateway: SessionGateway
@@ -166,7 +166,7 @@ export class SessionRouter {
       binding = await this.#bind(params)
       created = true
     } else {
-      // DSH may have restarted since this binding was made; make sure the session
+      // The host may have restarted since this binding was made; make sure the session
       // is live before handing it a prompt.
       await this.#gateway.ensureSession(binding.sessionId, binding.title)
     }
@@ -516,7 +516,7 @@ export function sessionIntent(
 }
 
 /**
- * Mint a session id in DSH's own format — kept for callers that need a one-off id.
+ * Mint a session id in the host's own format — kept for callers that need a one-off id.
  *
  * The id is `session-<uuid>` because the host treats that shape as its native
  * session identity. The trailing hex group is random; the leading group is

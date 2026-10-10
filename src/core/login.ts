@@ -14,7 +14,7 @@
  * The generator shape keeps every interactive decision with the caller: rendering a
  * QR code, reading a verification code, and deciding what to do on a redirect.
  *
- * @module @dsh-wechat/core/login
+ * @module mimo-desktop-wechat/core/login
  */
 
 import {
