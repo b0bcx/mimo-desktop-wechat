@@ -1,0 +1,66 @@
+{
+  "name": "mimo-desktop-wechat",
+  "version": "0.1.0",
+  "description": "MiMo Desktop × 微信：手机微信遥控本机 MiMo Desktop / MiMoCode，锁屏出门也能用，还会主动联系你。",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b0bcx/mimo-desktop-wechat.git"
+  },
+  "homepage": "https://github.com/b0bcx/mimo-desktop-wechat#readme",
+  "bugs": {
+    "url": "https://github.com/b0bcx/mimo-desktop-wechat/issues"
+  },
+  "keywords": [
+    "mimo",
+    "mimocode",
+    "mimo-desktop",
+    "wechat",
+    "weixin",
+    "ilink",
+    "clawbot",
+    "remote-control",
+    "ai-agent"
+  ],
+  "bin": {
+    "mimo-desktop-wechat": "dist/cli/index.js"
+  },
+  "main": "dist/plugin/index.js",
+  "exports": {
+    ".": {
+      "types": "dist/plugin/index.d.ts",
+      "import": "dist/plugin/index.js"
+    },
+    "./core": {
+      "types": "dist/core/index.d.ts",
+      "import": "dist/core/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepare": "npm run build",
+    "login": "node --experimental-strip-types src/cli/index.ts login",
+    "run": "node --experimental-strip-types src/cli/index.ts run",
+    "notify": "node --experimental-strip-types src/cli/index.ts notify",
+    "check": "npm run typecheck && npm run build"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "@mimo-ai/plugin": "^0.1.2",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "@types/qrcode": "^1.5.5",
+    "typescript": "^5.8.2"
+  }
+}
