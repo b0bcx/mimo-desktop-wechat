@@ -253,7 +253,13 @@ export class MimoCliGateway implements SessionGateway {
   async promptAndCapture(logicalId: string, text: string, isRetry = false): Promise<string> {
     await this.#ready()
     await mkdir(this.#workspace, { recursive: true })
-    await this.#touchIndex(logicalId, WECHAT_SESSION_TITLE)
+    /*
+     * Index title: only *our* logical sessions are titled 「MiMo微信」. A `ses_…`
+     * id here means the user `/switch`ed to some desktop conversation — stamping
+     * that with the WeChat title made the fallback list show a row of MiMo微信
+     * for every session the phone had ever touched.
+     */
+    await this.#touchIndex(logicalId, logicalId.startsWith('ses_') ? '' : WECHAT_SESSION_TITLE)
 
     let realId = await this.#resolveRealSession(logicalId)
     if (!realId && !isRetry) {
@@ -655,6 +661,13 @@ async function runMimoCapture(
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,
       env: process.env,
+      /*
+       * Never inherit the launcher's cwd. Inside a git repository the CLI's
+       * `session list` prints nothing (exit 0) — and the bridge is usually started
+       * from a project directory that IS one. The state dir is neutral: no git,
+       * no package.json, always present.
+       */
+      cwd: mimoStateDir(),
     })
     let stdout = ''
     let stderr = ''
