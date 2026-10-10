@@ -197,4 +197,4 @@ node dist/cli/index.js status
 
 ## License
 
-MIT，详见 [LICENSE](LICENSE)（含第三方衍生声明）。
+MIT，详见 [LICENSE](LICENSE)；第三方衍生声明见 [NOTICE](NOTICE)。

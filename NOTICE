@@ -1,0 +1,12 @@
+mimo-desktop-wechat
+Copyright (c) 2026 mimo-desktop-wechat contributors
+
+This product includes software derived from:
+
+  `@dsh-wechat/core`
+  https://github.com/xcisxc29/dsh-wechat
+  MIT License, Copyright (c) 2026 xcisxc29
+
+  Portions of `src/core/` (the Tencent iLink Bot API client) are derived
+  from the above work and from the Tencent iLink Bot API reference
+  implementation, and are redistributed under the MIT License.
